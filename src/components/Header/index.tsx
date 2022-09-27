@@ -1,5 +1,10 @@
 import { Flex, Image } from '@chakra-ui/react'
-export function Header(){
+import { RiArrowLeftSLine } from 'react-icons/ri'
+
+interface HeaderProps {
+  children?: React.ReactNode;
+}
+export function Header({children}: HeaderProps){
   return(
     <Flex
       as="header"
@@ -9,7 +14,9 @@ export function Header(){
       mt="4"
       align="center"
       justify="center"
+      position="relative"
     >
+       {children}
       <Image src="/Logo.png" alt="logo"/>
     </Flex>
   )
