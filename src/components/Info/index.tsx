@@ -6,9 +6,9 @@ interface InfoProps{
 }
 export function Info({quant, title}: InfoProps) {
   return (
-    <Box textAlign="center">
-      <Text fontSize="48" color="#FFBA08" fontWeight="semibold">{quant}</Text>
-      <Text fontSize="24" lineHeight="0">{title}</Text>
+    <Box textAlign={{base: "left", lg:"center"}}>
+      <Text fontSize={{base:"2xl", lg:"5xl"}} color="#FFBA08" fontWeight="semibold">{quant}</Text>
+      <Text fontSize={{base:"lg", lg:"2xl"}}>{title}</Text>
     </Box>
   )
 }

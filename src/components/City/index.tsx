@@ -14,14 +14,14 @@ export function City({
   imageUrl
 }: CityProps) {
   return (
-    <Box w={256} border="1px solid #FFBA0850" borderRadius="4">
-      <Image src={imageUrl} alt="" />
+    <Box maxW={256} w="full" border="1px solid #FFBA0850" borderRadius="base">
+      <Image borderTopRadius="base" src={imageUrl} alt="" />
       <Flex justifyContent="space-between" m="25">
         <Box>
-          <Text fontSize="20" fontWeight="semibold" color="gray.700">{name}</Text>
-          <Text fontSize="16" fontWeight="medium" color="#999999">{country}</Text>
+          <Text fontSize="xl" fontWeight="semibold" color="gray.700">{name}</Text>
+          <Text fontSize="md" fontWeight="medium" color="#999999">{country}</Text>
         </Box>
-        <Image src={flag} alt="frança" />
+        <Image  src={flag} alt={country} />
       </Flex>
     </Box>
   )

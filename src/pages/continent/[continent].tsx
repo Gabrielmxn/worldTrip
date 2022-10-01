@@ -41,48 +41,55 @@ export default function Continent({continentData}: propsType) {
   }, [continentData])
 
   console.log(continents)
+
+  function imageCityAleatory(){
+    const index = Math.floor(Math.random() * continents.City?.length);
+    console.log(continents.City?.[index].banner)
+    return continents.City?.[index].banner;
+  }
   return (
-    <>
-      <Header>
-        <Link href="/">
+    <Flex w="full" direction="column">
+      <Header >
+        <Link href="/"> 
         
           <Icon
             color="#000000"
             as={RiArrowLeftSLine}
-            position="absolute"
-            left="40"
-            top="0px"
-            bottom="0"
-            mt="auto"
-            mb="auto"
+           mr="auto"
+           
             w={8}
             h={8}
             lineHeight="1"
             _hover={{
               cursor: "pointer"
             }}
+          
           />
         </Link>
         
       </Header>
-      <Flex position="relative" color="#000000" w="1440" h="500" bgImage="https://images.unsplash.com/photo-1566745609223-23bce7140997?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1440&q=80&h=500" bgColor="#000000">
-        <Image filter="brightness(0.8)" src="https://images.unsplash.com/photo-1566745609223-23bce7140997?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1440&q=80&h=500" bgColor="#000000" h="500"/>
-        <Heading fontWeight="semibold" position="absolute" color="gray.50" bottom="59" left="140">{continents.name}</Heading>
+      <Flex position="relative">
+        <Image filter="brightness(0.8)" w="full" objectFit="cover" maxH="500px" src={`${imageCityAleatory()}`} alt={`${imageCityAleatory}.name`} bgColor="#000000" />
+        <Heading  display="flex" alignItems="center" justifyContent="center"  position="absolute" right={{base: "0", lg:"auto"}} top={{base: "0", lg:"auto"}} bottom={{base: "0", lg:"59"}} left={{base: "0", lg:"140"}}  color="gray.50">
+          <Text as="span" fontSize={{base: "2xl", lg:"5xl"}} fontWeight="semibold">
+            {continents.name}
+          </Text>
+        </Heading>
       </Flex>
-      <Grid as="section" maxW={1160} mx="auto" mb="10">
-        <Flex mt="20" alignItems="center" justifyContent="space-between" color="gray.700">
-          <Text w={500} fontSize={20} lineHeight="1.4" textAlign="justify">
+      <Grid as="section" mx={{base: "0", lg:"140"}} mb="10" textAlign="center">
+        <Flex flexDirection={{base:"column", lg:"row"}} gap="8" mt="20" alignItems="center" justifyContent="space-between" color="gray.700">
+          <Text fontSize={{base:"sm", lg:"2xl"}}  px={{base: '4', lg:"2xl"}} lineHeight="1.4" textAlign="justify">
            {continents.text}
           </Text>
-          <Stack direction="row" gap="16" mr="4">
+          <Stack direction="row" gap={{base:"4", lg:"16"}} p={{base:'4', lg:"2xl"}}>
             <Info quant={continents.countrinng} title="países" />
             <Info quant={continents.language} title="línguas" />
             <Info quant={continents.City?.length} title="cidades +100" />
           </Stack>
         </Flex>
 
-        <Heading color="gray.700" mt="20" mb="10">Cidades +100</Heading>
-        <Flex gap={42} m="0" wrap="wrap" >
+        <Heading color="gray.700" mt="20" mb="10" textAlign="initial" px={{base: '4', lg:"2xl"}}>Cidades +100</Heading>
+        <Flex textAlign={{base:"center", lg:"initial"}} justifyContent={{base:"center", lg:"initial"}} alignItems={{base:"center", lg:"initial"}} flexDirection={{base:"column", lg:"row"}} gap={42} m="0" wrap="wrap" >
           {continents.City?.map((valueResponse) => {
             return(
               <City 
@@ -96,7 +103,7 @@ export default function Continent({continentData}: propsType) {
           })}
         </Flex>
       </Grid>
-    </>
+    </Flex>
   );
 }
 
@@ -117,8 +124,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const verificationContinent = continentNames.find(value => value === continent);
 
   if(verificationContinent){
-    const reponse = await fetch(`http://localhost:3333/continent/${continent}`);
-    const data = await reponse.json();
+    console.log(`${process.env.URL_API}continent/${continent}`)
+    const response = await fetch(`${process.env.URL_API}continent/${continent}`);
+    const data = await response.json();
 
     const continentData: propsType = {
       ...data,
