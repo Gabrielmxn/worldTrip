@@ -33,7 +33,6 @@
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: red;
   /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
@@ -55,7 +54,6 @@
   width: 100%;
   position: relative;
   margin: 40px 0;
-  background: #FFBA08 !important;
  
 
 }
