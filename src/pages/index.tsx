@@ -2,7 +2,8 @@ import { Box, Flex, Grid, Heading, HStack, Image, Stack, Text } from "@chakra-ui
 import { Carousel } from "../components/Carousel";
 import { Header } from "../components/Header";
 import { TravelTypes } from "../components/TravelTypes";
-
+//import mirageJs from '../services/db';
+import { useEffect, useState } from 'react';
 
 
 export default function Home() {

@@ -10,8 +10,8 @@ export function TravelTypes({text, image, alt = "sem título"}: TravelTypesProps
     lg: true,
   })
   return (
-    <Box display="grid" gap={{base: "1", lg:"6"}} textAlign="center" justifyContent="center" alignContent="center">
-      {travelImg && <Image display={{base: "none", lg:"block"}} src={image} alt={alt} />}
+    <Box display="grid" color='gray.700' gap={{base: "1", lg:"6"}} textAlign="center" justifyItems="center" alignItems="center">
+      {travelImg && <Image src={image} alt={alt} />}
       {!travelImg ?   <Text position="relative" lineHeight="1" fontSize="lg" _after={
         {
           content: `""`,

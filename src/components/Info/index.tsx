@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Grid, Text } from "@chakra-ui/react";
 
 interface InfoProps{
   quant: number;
@@ -6,9 +6,9 @@ interface InfoProps{
 }
 export function Info({quant, title}: InfoProps) {
   return (
-    <Box textAlign={{base: "left", lg:"center"}}>
+    <Grid display="block" textAlign={{base: "left", lg:"center"}}>
       <Text fontSize={{base:"2xl", lg:"5xl"}} color="#FFBA08" fontWeight="semibold">{quant}</Text>
-      <Text fontSize={{base:"lg", lg:"2xl"}}>{title}</Text>
-    </Box>
+      <Text as="span" fontSize={{base:"lg", lg:"2xl"}}>{title}</Text>
+    </Grid>
   )
 }
