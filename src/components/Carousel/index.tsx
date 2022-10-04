@@ -2,6 +2,7 @@ import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper";
+import { ImageBox } from "./ImageBox";
 
 
 export function Carousel(){
@@ -18,77 +19,59 @@ export function Carousel(){
     
     >
       <SwiperSlide>
-        <Link href="continent/europa">
-          <a>
-            <Image src="continent.png" alt=""/>
-            <Box position="absolute" top="36%" color="gray.50" left="0" right="0" mx="auto" my="auto">
-              <Heading as="h1"  fontSize={{base:"lg", lg:"5xl"}}>Europa</Heading>
-              <Text fontWeight="bold" mt="2"  fontSize={{base:"lg", lg:"2xl"}}>O continente mais antigo.</Text>
-            </Box>
-          </a>
-        </Link>
+        <ImageBox 
+          urlLink="europa" 
+          image="londres"
+          text="O continente mais antigo."
+          title="Europa"
+        />
       </SwiperSlide>
 
       <SwiperSlide>
-        <Link href="continent/ásia">
-          <a>
-            <Image src="continent.png" alt=""/>
-            <Box position="absolute" top="36%" color="gray.50" left="0" right="0" mx="auto" my="auto">
-              <Heading  as="h1"  fontSize={{base:"lg", lg:"5xl"}}>Ásia</Heading>
-              <Text fontWeight="bold" mt="2"  fontSize={{base:"lg", lg:"2xl"}}>O mais extenso territorialmente.</Text>
-            </Box>
-          </a>
-        </Link>
+        <ImageBox 
+          urlLink="ásia" 
+          image="xangai"
+          text="O mais extenso territorialmente."
+          title="Ásia"
+        />
+      </SwiperSlide>
+      
+      <SwiperSlide>
+        <ImageBox 
+          urlLink="oceania" 
+          image="sydney"
+          text="Diversos territórios ultramarinos."
+          title="Oceania"
+        />
       </SwiperSlide>
 
       <SwiperSlide>
-        <Link href="continent/oceania">
-          <a>
-            <Image src="continent.png" alt=""/>
-            <Box position="absolute" top="36%" color="gray.50" left="0" right="0" mx="auto" my="auto">
-              <Heading  as="h1"  fontSize={{base:"lg", lg:"5xl"}}>Oceania</Heading>
-              <Text fontWeight="bold" mt="2"  fontSize={{base:"lg", lg:"2xl"}}>Diversos territórios ultramarinos.</Text>
-            </Box>
-          </a>
-        </Link>
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <Link href="continent/áfrica">
-          <a>
-            <Image src="continent.png" alt=""/>
-            <Box position="absolute" top="36%" color="gray.50" left="0" right="0" mx="auto" my="auto">
-              <Heading  as="h1"  fontSize={{base:"lg", lg:"5xl"}}>África</Heading>
-              <Text fontWeight="bold" mt="2"  fontSize={{base:"lg", lg:"2xl"}}>O terceiro maior continente do mundo.</Text>
-            </Box>
-          </a>
-        </Link>
+        <ImageBox 
+          urlLink="áfrica" 
+          image="cairo"
+          text="O terceiro maior continente do mundo."
+          title="África"
+        />
       </SwiperSlide>
 
 
       <SwiperSlide>
-        <Link href="continent/américa-do-sul">
-          <a>
-            <Image src="continent.png" alt=""/>
-            <Box position="absolute" top="36%" color="gray.50" left="0" right="0" mx="auto" my="auto">
-              <Heading  as="h1"  fontSize={{base:"lg", lg:"5xl"}}>América do Sul</Heading>
-              <Text fontWeight="bold" mt="2"  fontSize={{base:"lg", lg:"2xl"}}>Paisagens naturais muito diversas.</Text>
-            </Box>
-          </a>
-        </Link>
+        <ImageBox 
+          urlLink="américa do sul" 
+          image="rio-de-janeiro"
+          text="Paisagens naturais muito diversas."
+          title="América do Sul"
+        />
       </SwiperSlide>
 
 
       <SwiperSlide>
-        <Link href="continent/américa%20do%20norte">
-          <a>
-            <Image src="continent.png" alt=""/>
-            <Box position="absolute" top="36%" color="gray.50" left="0" right="0" mx="auto" my="auto">
-              <Heading  as="h1"  fontSize={{base:"lg", lg:"5xl"}}>América do Norte</Heading>
-              <Text fontWeight="bold" mt="2"  fontSize={{base:"lg", lg:"2xl"}}>Continente de duas potências mundiais.</Text>
-            </Box>
-          </a>
-        </Link>
+        <ImageBox 
+          urlLink="américa do norte" 
+          image="new-york"
+          text="Continente de duas potências mundiais."
+          title="América do Norte"
+        />
       </SwiperSlide>
 
 
