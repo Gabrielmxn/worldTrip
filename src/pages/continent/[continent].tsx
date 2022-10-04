@@ -43,6 +43,7 @@ export default function Continent() {
   }, [query])
   useEffect(() => {
     imageCityAleatory()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [continents])
 
   console.log(continents)
