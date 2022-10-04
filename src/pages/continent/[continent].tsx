@@ -31,9 +31,9 @@ export default function Continent() {
   const [continents, setContinents] = useState<ContinentProps>({} as ContinentProps)
   const [imageCityAleatoryURL, setImageCityAleatoryURL] = useState('');
   const { query } = useRouter();
-  console.log(query.continent)
+
   useEffect(() => {
-    fetch(`http://192.168.0.191:3000/api/continent/${query.continent}`)
+    fetch(`http://localhost:3000/api/continent/${query.continent}`)
     .then((response) => response.json())
     .then(data => { 
       setContinents({
@@ -46,11 +46,9 @@ export default function Continent() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [continents])
 
-  console.log(continents)
 
   function imageCityAleatory(){
     const index = Math.floor(Math.random() * continents.City?.length);
-    console.log(continents.City?.[index].banner)
     return setImageCityAleatoryURL(continents.City?.[index].banner);
   }
   return (

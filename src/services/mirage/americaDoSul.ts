@@ -8,15 +8,15 @@ export const americaDoSul = {
     {
       "name": "São Paulo",
       "country": "Brasil",
-      "flag": "http://192.168.0.191:3000/image/paises/brasil.svg",
-      "banner": "http://192.168.0.191:3000/image/banner/saoPaulo.jpg",
+      "flag": "/image/paises/brasil.svg",
+      "banner": "/image/banner/saoPaulo.jpg",
       "continentId": "ba864559-287d-47c0-bd20-b4994cebadc2"
     },
     {
       "name": "Rio de Janeiro",
       "country": "Brasil",
-      "flag": "http://192.168.0.191:3000/image/paises/brasil.svg",
-      "banner": "http://192.168.0.191:3000/image/banner/rio-de-janeiro.jpg",
+      "flag": "/image/paises/brasil.svg",
+      "banner": "/image/banner/rio-de-janeiro.jpg",
       "continentId": "bfbcfb9d-bd43-4bd2-821c-566c7babc31b"
     }
   ]

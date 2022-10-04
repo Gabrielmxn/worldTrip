@@ -10,16 +10,16 @@ export const africa = {
       
       "name": "Cairo",
       "country": "Egito",
-      "flag": "http://192.168.0.191:3000/image/paises/egito.svg",
-      "banner": "http://192.168.0.191:3000/image/banner/cairo.jpg",
+      "flag": "/image/paises/egito.svg",
+      "banner": "/image/banner/cairo.jpg",
       
     },
     {
       
       "name": "Casablanca",
       "country": "Marrocos",
-      "flag": "http://192.168.0.191:3000/image/paises/marrocos.svg",
-      "banner": "http://192.168.0.191:3000/image/banner/casablanca.jpg",
+      "flag": "/image/paises/marrocos.svg",
+      "banner": "/image/banner/casablanca.jpg",
       
     }
   ]

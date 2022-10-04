@@ -10,16 +10,16 @@ export const americaDoNorte = {
       
       "name": "Nova Iorque",
       "country": "Estados Unidos",
-      "flag": "http://192.168.0.191:3000/image/paises/estadosUnidos.svg",
-      "banner": "http://192.168.0.191:3000/image/banner/novaIorque.jpg",
+      "flag": "/image/paises/estadosUnidos.svg",
+      "banner": "/image/banner/novaIorque.jpg",
       
     },
     {
       
       "name": "Cidade do México",
       "country": "México",
-      "flag": "http://192.168.0.191:3000/image/paises/méxico.svg",
-      "banner": "http://192.168.0.191:3000/image/banner/cidadoDoMexico.jpg",
+      "flag": "/image/paises/méxico.svg",
+      "banner": "/image/banner/cidadoDoMexico.jpg",
       
     }
   ]
