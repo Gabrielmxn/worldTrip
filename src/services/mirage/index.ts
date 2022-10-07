@@ -1,10 +1,10 @@
-import { americaDoNorte } from './americaDoNorte';
-import { oceania } from './oceania';
+import { americaDoNorte } from './continent/americaDoNorte';
+import { oceania } from './continent/oceania';
 import { createServer, Factory, Model,Registry  } from 'miragejs';
 import { ModelDefinition } from "miragejs/-types";
 import Schema from "miragejs/orm/schema";
-import { americaDoSul } from './americaDoSul';
-import { africa } from './africa';
+import { americaDoSul } from './continent/americaDoSul';
+import { africa } from './continent/africa';
 
 type City = {
   name: string;

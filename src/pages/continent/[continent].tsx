@@ -7,6 +7,8 @@ import Link from "next/link";
 import { Info } from "../../components/Info";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
+import { api } from "../../services/api";
+import { useContinent } from "../../services/hooks/useContinent";
 
 interface propsType{
   continent: ContinentProps;
@@ -31,16 +33,11 @@ export default function Continent() {
   const [continents, setContinents] = useState<ContinentProps>({} as ContinentProps)
   const [imageCityAleatoryURL, setImageCityAleatoryURL] = useState('');
   const { query } = useRouter();
-
-  useEffect(() => {
-    fetch(`http://localhost:3000/api/continent/${query.continent}`)
-    .then((response) => response.json())
-    .then(data => { 
-      setContinents({
-        ...data?.continent,
-        name: data?.continent.name[0].toUpperCase() + data?.continent.name.slice(1)})
-    });
-  }, [query])
+  const { data } = useContinent({
+      nameContinent: query?.continent as string,
+  })
+   
+  console.log(data);
   useEffect(() => {
     imageCityAleatory()
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -48,8 +45,8 @@ export default function Continent() {
 
 
   function imageCityAleatory(){
-    const index = Math.floor(Math.random() * continents.City?.length);
-    return setImageCityAleatoryURL(continents.City?.[index].banner);
+    const index = Math.floor(Math.random() * data.City?.length);
+    return setImageCityAleatoryURL(data.City?.[index].banner);
   }
   return (
     <Flex w="full" direction="column">
@@ -74,27 +71,27 @@ export default function Continent() {
       </Header>
       <Flex position="relative">
         <Image filter="brightness(0.8)" w="full" objectFit="cover" maxH="500px" src={imageCityAleatoryURL} alt={`${imageCityAleatory}.name`} bgColor="#000000" />
-        <Heading  display="flex" alignItems="center" justifyContent="center"  position="absolute" right={{base: "0", lg:"auto"}} top={{base: "0", lg:"auto"}} bottom={{base: "0", lg:"59"}} left={{base: "0", lg:"140"}}  color="gray.50">
-          <Text as="span" fontSize={{base: "2xl", lg:"5xl"}} fontWeight="semibold">
-            {continents.name}
+        <Heading  w="full" maxW={1160} display="flex" alignItems={{base: "center", lg: "end"}} justifyContent={{base: "center", lg: "start"}} mx="auto" position="absolute" right="0" left="0" h="full" color="gray.50">
+          <Text  as="span" fontSize={{base: "2xl", lg:"5xl"}} fontWeight="semibold" pb={{base: `${0}`, lg: `${16}`}}>
+            {data.name}
           </Text>
         </Heading>
       </Flex>
-      <Grid as="section" mx={{base: "0", lg:"140"}} mb="10" textAlign="center">
+      <Grid as="section" w="full" maxW={1160}  mx="auto" mb="10" textAlign="center">
         <Flex flexDirection={{base:"column", lg:"row"}} gap={{base: "4", lg: "20"}} mt="20" alignItems="center" color="gray.700">
           <Text maxW={{base: "full", lg:"600px"}} fontSize={{base:"sm", lg:"2xl"}}  px={{base: '4', lg:"0"}} lineHeight="1.4" textAlign="justify">
-           {continents.text}
+           {data.text}
           </Text>
           <Stack direction="row" gap={{base:"4", lg:"16"}} p={{base:'4', lg:"0"}}>
-            <Info quant={continents.countrinng} title="países" />
-            <Info quant={continents.language} title="línguas" />
-            <Info quant={continents.City?.length} title="cidades +100" />
+            <Info quant={data.countrinng} title="países" />
+            <Info quant={data.language} title="línguas" />
+            <Info quant={data.City?.length} title="cidades +100" />
           </Stack>
         </Flex>
 
         <Heading color="gray.700" mt="20" mb="10" textAlign="initial" px={{base: '4', lg:"0"}}>Cidades +100</Heading>
         <Flex textAlign={{base:"center", lg:"initial"}} justifyContent={{base:"center", lg:"initial"}} alignItems={{base:"center", lg:"initial"}} flexDirection={{base:"column", lg:"row"}} gap={42} m="0" wrap="wrap" >
-          {continents.City?.map((valueResponse) => {
+          {data.City?.map((valueResponse) => {
             return(
               <City 
                 key={valueResponse.name}
