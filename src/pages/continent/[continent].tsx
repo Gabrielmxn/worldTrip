@@ -1,5 +1,4 @@
 import { Flex, Heading, Icon, Image, Stack, Text, Grid, Spinner, Skeleton } from "@chakra-ui/react";
-import { ParsedUrlQuery } from "querystring";
 import { Header } from "../../components/Header";
 import { RiArrowLeftSLine } from "react-icons/ri";
 import { City } from "../../components/City";
@@ -7,10 +6,9 @@ import Link from "next/link";
 import { Info } from "../../components/Info";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
-import { api } from "../../services/api";
-import { getContinent, useContinent } from "../../services/hooks/useContinent";
-import { QueryObserverBaseResult, UseQueryOptions } from "react-query";
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
+import { getContinent } from "../../services/hooks/useContinent";
+
+
 
 interface propsType{
   continent: ContinentProps;
@@ -23,7 +21,7 @@ interface cityProps {
   banner: string;
 }
 
-interface ContinentProps extends QueryObserverBaseResult {
+interface ContinentProps {
   data: {
     id: string;
     name: string;
