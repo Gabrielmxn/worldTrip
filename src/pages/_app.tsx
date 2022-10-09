@@ -4,20 +4,22 @@ import { theme } from '../styles/theme';
 import "../styles/styles.css";
 import "swiper/css/bundle";
 import { makeServer } from '../services/mirage';
+
+import { ReactQueryDevtools } from 'react-query/devtools'
+
 import { QueryClientProvider, QueryClient } from "react-query"
 if (process.env.NODE_ENV === 'development'){
   makeServer();
 }
 
-const queryClient = new QueryClient();
+
 
 function MyApp({ Component, pageProps }: AppProps) {
   return(
-    <QueryClientProvider client={queryClient}>
-  <   ChakraProvider theme={theme} resetCSS>
-        <Component {...pageProps} />
-      </ChakraProvider>
-    </QueryClientProvider>
+
+    <ChakraProvider theme={theme} resetCSS>
+      <Component {...pageProps} />
+    </ChakraProvider>
     
     
   )

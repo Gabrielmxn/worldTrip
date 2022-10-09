@@ -1,4 +1,4 @@
-import { Flex, Heading, Icon, Image, Stack, Text, Grid } from "@chakra-ui/react";
+import { Flex, Heading, Icon, Image, Stack, Text, Grid, Spinner, Skeleton } from "@chakra-ui/react";
 import { ParsedUrlQuery } from "querystring";
 import { Header } from "../../components/Header";
 import { RiArrowLeftSLine } from "react-icons/ri";
@@ -8,7 +8,9 @@ import { Info } from "../../components/Info";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import { api } from "../../services/api";
-import { useContinent } from "../../services/hooks/useContinent";
+import { getContinent, useContinent } from "../../services/hooks/useContinent";
+import { QueryObserverBaseResult, UseQueryOptions } from "react-query";
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 
 interface propsType{
   continent: ContinentProps;
@@ -21,32 +23,42 @@ interface cityProps {
   banner: string;
 }
 
-interface ContinentProps{
-  id: string;
-  name: string;
-  text: string
-  countrinng: number;
-  language: number;
-  City: cityProps[];
+interface ContinentProps extends QueryObserverBaseResult {
+  data: {
+    id: string;
+    name: string;
+    text: string
+    countrinng: number;
+    language: number;
+    City: cityProps[];
+  }
+  
 }
 export default function Continent() {
-  const [continents, setContinents] = useState<ContinentProps>({} as ContinentProps)
-  const [imageCityAleatoryURL, setImageCityAleatoryURL] = useState('');
   const { query } = useRouter();
-  const { data } = useContinent({
-      nameContinent: query?.continent as string,
-  })
-   
-  console.log(data);
-  useEffect(() => {
-    imageCityAleatory()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [continents])
+  const [dataContinentHooks, setDataContinentHooks] = useState({} as any);
 
+ 
+   
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    async function getData() {
+      const dataContinent = await getContinent(query?.continent as string)
+      setDataContinentHooks({...dataContinent})
+    }
+    
+    setTimeout(() => {
+      getData();
+    }, 3000)
+  }, [query])
+
+  console.log()
+  
+  
 
   function imageCityAleatory(){
-    const index = Math.floor(Math.random() * data.City?.length);
-    return setImageCityAleatoryURL(data.City?.[index].banner);
+    const index = Math.floor(Math.random() * dataContinentHooks?.City?.length);
+    return dataContinentHooks?.City?.[index].banner;
   }
   return (
     <Flex w="full" direction="column">
@@ -69,82 +81,53 @@ export default function Continent() {
         </Link>
         
       </Header>
-      <Flex position="relative">
-        <Image filter="brightness(0.8)" w="full" objectFit="cover" maxH="500px" src={imageCityAleatoryURL} alt={`${imageCityAleatory}.name`} bgColor="#000000" />
-        <Heading  w="full" maxW={1160} display="flex" alignItems={{base: "center", lg: "end"}} justifyContent={{base: "center", lg: "start"}} mx="auto" position="absolute" right="0" left="0" h="full" color="gray.50">
-          <Text  as="span" fontSize={{base: "2xl", lg:"5xl"}} fontWeight="semibold" pb={{base: `${0}`, lg: `${16}`}}>
-            {data.name}
-          </Text>
-        </Heading>
-      </Flex>
-      <Grid as="section" w="full" maxW={1160}  mx="auto" mb="10" textAlign="center">
-        <Flex flexDirection={{base:"column", lg:"row"}} gap={{base: "4", lg: "20"}} mt="20" alignItems="center" color="gray.700">
-          <Text maxW={{base: "full", lg:"600px"}} fontSize={{base:"sm", lg:"2xl"}}  px={{base: '4', lg:"0"}} lineHeight="1.4" textAlign="justify">
-           {data.text}
-          </Text>
-          <Stack direction="row" gap={{base:"4", lg:"16"}} p={{base:'4', lg:"0"}}>
-            <Info quant={data.countrinng} title="países" />
-            <Info quant={data.language} title="línguas" />
-            <Info quant={data.City?.length} title="cidades +100" />
-          </Stack>
-        </Flex>
-
-        <Heading color="gray.700" mt="20" mb="10" textAlign="initial" px={{base: '4', lg:"0"}}>Cidades +100</Heading>
-        <Flex textAlign={{base:"center", lg:"initial"}} justifyContent={{base:"center", lg:"initial"}} alignItems={{base:"center", lg:"initial"}} flexDirection={{base:"column", lg:"row"}} gap={42} m="0" wrap="wrap" >
-          {data.City?.map((valueResponse) => {
-            return(
-              <City 
-                key={valueResponse.name}
-                imageUrl={valueResponse.banner}
-                name={valueResponse.name}
-                country={valueResponse.country}
-                flag={valueResponse.flag}
-              />
-            )
-          })}
-        </Flex>
-      </Grid>
+  
+    
+        
+            <Flex position="relative">
+           
+              <Image filter="brightness(0.8)" w="full" objectFit="cover" maxH="500px" src={imageCityAleatory()} alt={dataContinentHooks?.name} bgColor="#000000" />
+              <Heading  w="full" maxW={1160} display="flex" alignItems={{base: "center", lg: "end"}} justifyContent={{base: "center", lg: "start"}} mx="auto" position="absolute" right="0" left="0" h="full" color="gray.50">
+                <Text  as="span" fontSize={{base: "2xl", lg:"5xl"}} fontWeight="semibold" pb={{base: `${0}`, lg: `${16}`}}>
+                  {dataContinentHooks?.name}
+                </Text>
+              </Heading>
+            
+          </Flex>
+          <Grid as="section" w="full" maxW={1160}  mx="auto" mb="10" textAlign="center">
+            <Flex flexDirection={{base:"column", lg:"row"}} gap={{base: "4", lg: "20"}} mt="20" alignItems="center" color="gray.700">
+              <Text maxW={{base: "full", lg:"600px"}} fontSize={{base:"sm", lg:"2xl"}}  px={{base: '4', lg:"0"}} lineHeight="1.4" textAlign="justify">
+              {dataContinentHooks?.text}
+              </Text>
+              <Stack direction="row" gap={{base:"4", lg:"16"}} p={{base:'4', lg:"0"}}>
+                <Info quant={dataContinentHooks?.countrinng} title="países" />
+                <Info quant={dataContinentHooks?.language} title="línguas" />
+                <Info quant={dataContinentHooks?.City?.length} title="cidades +100" />
+              </Stack>
+            </Flex>
+    
+            <Heading color="gray.700" mt="20" mb="10" textAlign="initial" px={{base: '4', lg:"0"}}>Cidades +100</Heading>
+            <Flex textAlign={{base:"center", lg:"initial"}} justifyContent={{base:"center", lg:"initial"}} alignItems={{base:"center", lg:"initial"}} flexDirection={{base:"column", lg:"row"}} gap={42} m="0" wrap="wrap" >
+              {dataContinentHooks?.City?.map((valueResponse: cityProps) => {
+                return(
+                  <City 
+                    key={valueResponse.name}
+                    imageUrl={valueResponse.banner}
+                    name={valueResponse.name}
+                    country={valueResponse.country}
+                    flag={valueResponse.flag}
+                  />
+                )
+              })}
+            </Flex>
+          </Grid>
+    
     </Flex>
+
+    
   );
 }
 
-//Conexão com NodeJs
-/*
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [
-      
-    ],
-    fallback: true,
-  };
-};
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const continentNames = ["europa", "ásia", "américa do sul", "américa do norte", "oceania", "áfrica"]
 
-  
-  const { continent } = context.params as ParamsProps;
-  const verificationContinent = continentNames.find(value => value === continent);
-  console.log(continent);
-    const response = await fetch(`http://localhost:3333/continent/europa`)
-    const data = await response.json()
 
-   const continentData = {
-      ...data.continent,
-      name: data.continent.name[0].toUpperCase() + data.continent.name.slice(1)
-    }
- 
-  
-
-    return {
-      props: {
-        continentData
-      },
-      revalidate: 1,
-    };
-  
-
-  
-
-};
-*/
