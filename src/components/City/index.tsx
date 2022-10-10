@@ -1,20 +1,23 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Skeleton, Text } from "@chakra-ui/react";
 
 interface CityProps {
   name: string;
   country: string;
   flag: string;
   imageUrl: string;
+  isLoaded: boolean;
 }
 
 export function City({
   name,
   country,
   flag,
-  imageUrl
+  imageUrl,
+  isLoaded
 }: CityProps) {
   return (
-    <Box maxW={256} w="full" border="1px solid #FFBA0850" borderRadius="base">
+   
+    <Skeleton isLoaded={isLoaded} maxW={256}  border="1px solid #FFBA0850" borderRadius="base">
       <Image borderTopRadius="base" src={imageUrl} alt="" />
       <Flex justifyContent="space-between" m="25">
         <Box>
@@ -23,6 +26,6 @@ export function City({
         </Box>
         <Image  src={flag} alt={country} />
       </Flex>
-    </Box>
+    </Skeleton>
   )
 }

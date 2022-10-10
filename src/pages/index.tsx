@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 export default function Home() {
   return(
     <>
-      <Header />
+      <Header isLoaded={true}/>
       <Flex 
         w="100%"
         bg="gray.700"
