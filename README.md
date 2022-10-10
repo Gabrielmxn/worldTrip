@@ -57,7 +57,7 @@ ou
 ```
 npm run dev
 ```
-Agora é só acessar o link: [htpp://localhost:3000](htpp://localhost:3000) 
+Agora é só acessar o link: [http://localhost:3000](http://localhost:3000) 
 
 ## 📝 Licença
 
