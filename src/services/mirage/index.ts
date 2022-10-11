@@ -47,24 +47,24 @@ export function makeServer() {
             
             "name": "Londres",
             "country": "Reino Unido",
-            "flag": "http://192.168.0.191:3000/image/paises/reinounido.svg",
-            "banner": "http://192.168.0.191:3000/image/banner/londres.jpg",
+            "flag": "/image/paises/reinounido.svg",
+            "banner": "/image/banner/londres.jpg",
             
           },
           {
             
             "name": "Paris",
             "country": "França",
-            "flag": "http://192.168.0.191:3000/image/paises/frança.svg",
-            "banner": "http://192.168.0.191:3000/image/banner/paris.jpg",
+            "flag": "/image/paises/frança.svg",
+            "banner": "/image/banner/paris.jpg",
             
           },
           {
             
             "name": "Praga",
             "country": "República Tcheca",
-            "flag": "http://192.168.0.191:3000/image/paises/republicaTcheca.svg",
-            "banner": "http://192.168.0.191:3000/image/banner/praga.jpg",
+            "flag": "/image/paises/republicaTcheca.svg",
+            "banner": "/image/banner/praga.jpg",
             
           }
         ]
@@ -80,16 +80,16 @@ export function makeServer() {
             
             "name": "Xangai",
             "country": "China",
-            "flag": "http://192.168.0.191:3000/image/paises/china.svg",
-            "banner": "http://192.168.0.191:3000/image/banner/xangai.jpg",
+            "flag": "/image/paises/china.svg",
+            "banner": "/image/banner/xangai.jpg",
             
           },
           {
             
             "name": "Mumbai",
             "country": "Índia",
-            "flag": "http://192.168.0.191:3000/image/paises/india.svg",
-            "banner": "http://192.168.0.191:3000/image/banner/mumbai.jpg",
+            "flag": "/image/paises/india.svg",
+            "banner": "/image/banner/mumbai.jpg",
             
           }
         ]
